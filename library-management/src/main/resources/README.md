@@ -8,6 +8,10 @@ Database-MySQl
 
 ORM-Hibernate
 
+Security-This application has Spring boot security rest basic authentication.
+
+
+
 ---------------------------------
 The url for the APIs are as follows
 

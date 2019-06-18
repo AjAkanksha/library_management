@@ -8,6 +8,8 @@ Database-MySQl
 
 ORM-Hibernate
 
+Security-This application has Spring boot security rest basic authentication.
+
 ---------------------------------
 The url for the APIs are as follows
 
@@ -36,4 +38,5 @@ http://localhost:8082/library/searchbook/DBMS
 VERB-GET
 http://localhost:8082/library/viewBooks
 
-
+---------------------------------------------------
+create and insert queries are in Books.sql
