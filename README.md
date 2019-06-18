@@ -9,6 +9,9 @@ Database-MySQl
 ORM-Hibernate
 
 Security-This application has Spring boot security rest basic authentication.
+Credentials to login the app
+username-admin
+password-@akanksha123
 
 ---------------------------------
 The url for the APIs are as follows
