@@ -1,38 +1,37 @@
-/*package com.target.lib_mgmt;
+package com.target.lib_mgmt;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
 
+import org.easymock.classextension.EasyMock;
+import org.junit.Before;
 import org.junit.Test;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import com.target.lib_mgmt.controller.LibraryController;
 import com.target.lib_mgmt.model.BooksEntity;
+import com.target.lib_mgmt.service.BooksService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(LibraryController.class)
-public class LibraryControllerTest extends AbstractTest {
+public class LibraryControllerTest {
 
-	@Autowired
-    private MockMvc mvc;
-	
-    @MockBean
-    BooksServiceImpl serviceImpl;
-    
-    //private List<BooksEntity> booksentity;
-    
-    @Test
-    public void viewBooks()
-      throws Exception {
-        
-        BooksEntity booksentity = BooksEntity.builder().bookname("DBMS").build();
-        
-       Mockito.when(serviceImpl.search("DBMS").thenReturn(booksentity);
-       // given(serviceImpl.search("DBMS")).willReturn(booksentity);
-        mvc.perform(get("/search/DBMS").contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.bookname", is("DBMS")));
-    }
+	LibraryController libraryController;
+	BooksService bookService;
+	BooksEntity bookEntity;
 
+	@Before
+	public final void setUp() {
+		libraryController = new LibraryController();
+		bookService = EasyMock.createMock(BooksService.class);
+		libraryController.setBooksService(bookService);
+	}
+
+	@Test
+	public final void searchByBookNameTest() throws Exception {
+		bookEntity = new BooksEntity();
+		bookEntity.setBookid("123");
+		EasyMock.expect(bookService.search("TestBook")).andReturn(bookEntity);
+		EasyMock.replay(bookService);	
+		BooksEntity bkf = libraryController.searchByBookName("TestBook");
+		EasyMock.verify(bookService);
+		assertEquals(bookEntity.getBookid(), bkf.getBookid());
+	}
 }
-*/
